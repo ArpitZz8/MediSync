@@ -1,0 +1,71 @@
+{
+  "version": 1,
+  "author": "MediSync demo",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-esp32-devkit-c-v4",
+      "id": "esp",
+      "top": 87.6,
+      "left": 9.4,
+      "attrs": {}
+    },
+    {
+      "type": "board-ssd1306",
+      "id": "oled",
+      "top": -7.2,
+      "left": 353.4,
+      "attrs": { "i2cAddress": "0x3c" }
+    },
+    {
+      "type": "wokwi-hx711",
+      "id": "hx711",
+      "top": 264,
+      "left": 348,
+      "attrs": { "type": "5kg" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "statusLed",
+      "top": 344.4,
+      "left": 119,
+      "attrs": { "color": "green", "label": "Status" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "ledResistor",
+      "top": 349.2,
+      "left": 185,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-buzzer",
+      "id": "buzzer",
+      "top": 340.8,
+      "left": 286.4,
+      "attrs": { "volume": "0.5" }
+    }
+  ],
+  "connections": [
+    [ "esp:21", "oled:SDA", "green", [ "h180", "v-70" ] ],
+    [ "esp:22", "oled:SCL", "blue", [ "h200", "v-90" ] ],
+    [ "esp:3V3", "oled:VCC", "red", [ "h250", "v-40" ] ],
+    [ "esp:GND.1", "oled:GND", "black", [ "h230", "v-55" ] ],
+
+    [ "esp:18", "hx711:DT", "green", [ "h210", "v120" ] ],
+    [ "esp:19", "hx711:SCK", "blue", [ "h230", "v140" ] ],
+    [ "esp:3V3", "hx711:VCC", "red", [ "h265", "v100" ] ],
+    [ "esp:GND.2", "hx711:GND", "black", [ "h250", "v160" ] ],
+
+    [ "esp:25", "statusLed:A", "green", [ "v150", "h50" ] ],
+    [ "statusLed:C", "ledResistor:1", "green", [ "h20" ] ],
+    [ "ledResistor:2", "esp:GND.3", "black", [ "h-35", "v40" ] ],
+
+    [ "esp:26", "buzzer:2", "green", [ "h210", "v180" ] ],
+    [ "buzzer:1", "esp:GND.3", "black", [ "h-210", "v150" ] ]
+  ],
+  "serialMonitor": {
+    "display": "auto",
+    "newline": "lf"
+  }
+}

@@ -1,0 +1,12 @@
+name: MediSync reminder to medication event
+version: 1
+steps:
+  - wait-serial: 'DEMO_READY'
+  - wait-serial: 'REMINDER_START'
+  - wait-serial: 'BASELINE_READY'
+  - set-control:
+      part-id: hx711
+      control: load
+      value: 0.003
+  - wait-serial: 'EVENT_DETECTED'
+  - wait-serial: 'EVENT_RECORDED_UNRESOLVED'
